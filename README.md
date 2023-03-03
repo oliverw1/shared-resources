@@ -1,6 +1,6 @@
 # Realization of AI - Shared resources repository.
 
-Hey there, dear students 👋!
+Hey there, dear students 👋
 
 This repository contains shared resources useful for you during your realization of the course 🛠!
 
