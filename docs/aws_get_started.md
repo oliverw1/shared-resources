@@ -30,6 +30,7 @@ so, we will use the `aws` CLI.
 To install the CLI in your machine, [you can refer to these instructions](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). 
 We can summarize them simply by running the following commands:
 ```
+sudo apt-get update && sudo apt-get install unzip -y
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
