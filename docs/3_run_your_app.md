@@ -67,24 +67,40 @@ You can also use the AWS console to check that your image is available in your E
 
 ## Push your dependencies to your S3 bucket.
 
-TODO
+In this course, we will use the S3 service to store our application artifacts (your ML models). To do 
+so, you can run from your Codespace/laptop containing the ML models binaries (in a `models` folder) 
+the following command:
+
+```bash
+# From the root of your repository:
+aws s3 cp ./models s3://<your-S3-bucket-name>//models --recursive
+```
+
+The command above will copy the `models` folder to the `models` folder in your S3 bucket. Thanks to 
+the `--recursive` flag, all the files contained in the `models` folder will be copied to your S3 bucket.
+Make sure you read the documentation and tailor your command to your needs.
 
 ## Run your Docker image on your EC2 instance.
 
 Now your image is available in your ECR repository and your dependencies are available in your S3 bucket,
 you can run your application on your EC2 instance. To do so, you need to pull your image from your ECR
-registry and run it appropriately depending on your implementation. To do so, you can inspire yourself
-from the following example commands:
+registry and run it appropriately depending on your implementation. You will also need to pull your 
+dependencies from S3. Those can be pass to your application Docker container by using volume mount. 
+To do so, you can inspire yourself from the following example commands:
 
 ```bash
 # On your EC2 instance
 aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 516454187396.dkr.ecr.eu-west-3.amazonaws.com
 docker pull 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest
 
-# Run the API
+# Pull your dependencies from S3
+aws s3 cp s3://<your-S3-bucket-name>/models ./models --recursive
+
+# Run the API (and mount the models folder as a volume in the /data/models folder of the image)
 docker run \
 -d \
 --rm \
+-v $(pwd)/models:/data/models \
 -p 8000:8000 \
 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest \
 api
