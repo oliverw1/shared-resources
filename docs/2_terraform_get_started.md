@@ -31,7 +31,8 @@ Note that you will need to have a configured `aws` CLI profile on your machine a
 [Refer to the dedicated documentation page to setup your AWS credentials properly.](./aws_get_started.md)
 
 * To use Terraform, we will install `tfswitch` which allows you to use all versions of Terraformrun 
-  through a single tool. Install `tfswitch` by running the following command:
+  through a single tool. Install `tfswitch` by running the following command (in GitHub Codespace, you will need
+  to assume an admin session first by running `sudo su` before the installation command):
   ```bash
   curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash 
   ```
