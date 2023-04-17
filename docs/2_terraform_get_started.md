@@ -26,28 +26,9 @@ The `student-stack` Terraform module will deploy for you the following AWS resou
 
 ### Prerequisites.
 
-Using the `student-stack` module is very simple once you have Terraform installed on your machine.
-Note that you will need to have a configured `aws` CLI profile on your machine and a SSH keypair. 
-[Refer to the dedicated documentation page to setup your AWS credentials properly.](./aws_get_started.md)
-
-* To use Terraform, we will install `tfswitch` which allows you to use all versions of Terraformrun 
-  through a single tool. Install `tfswitch` by running the following command. Note that, in GitHub Codespace, 
-  you will need to assume an admin session first by running `sudo su` before the installing `tfswitch`:
-  ```bash
-  sudo su
-  curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash 
-  exit
-  ```
-
-* Once `tfswitch` is installed, you can use it to install the latest version of Terraform:
-  ```bash
-  tfswitch --latest
-  ```
-
-* You can now run `terraform` to check that it is installed and working:
-  ```bash
-  terraform --version
-  ```
+Using the `student-stack` module is very simple considering the fact that Terraform is already installed
+in your GitHub CodeSpace. Note that you will need to have a configured `aws` CLI profile on your machine 
+and a SSH keypair. [Refer to the dedicated documentation page to setup your AWS credentials properly.](./aws_get_started.md)
 
 ### Deploy the `student-stack` module.
 
