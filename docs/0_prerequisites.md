@@ -21,3 +21,5 @@ You can add them anywhere within the root structure of the `devcontainer.json` f
 Once done, you need to rebuild your CodeSpace. To do so, you can either click on the pop-up `Rebuild Container`
 that should appear in the bottom right corner of your CodeSpace or you can press <kbd>CTRL</kbd><kbd>+</kbd><kbd>P</kbd> 
 and type `> Codespaces: Rebuild Container` to find the associated command.
+
+Also, don't forget to commit and push your changes to your repository!
