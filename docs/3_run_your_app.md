@@ -20,23 +20,6 @@ s3_bucket_name = "testuser-kulroai-bucket"
 
 ![tf_outputs](./img/tf_output.png)
 
-## Connect to your EC2 instance.
-
-To connect to your EC2 instance, you can use either the `ec2_instance_public_dns` or the `ec2_instance_public_ip`
-outputs of your Terraform deployment. In this example, we will use the `ec2_instance_public_dns` output.
-You can connect using the `ssh` command:
-
-```
-ssh ec2-user@ec2-15-188-119-232.eu-west-3.compute.amazonaws.com
-```
-
-You may be asked to confirm the authenticity of the host at first connection. Just type `yes` and 
-press <kbd>ENTER</kbd>. Once connected, you should see something like this:
-
-![ssh_connection](./img/ssh_connection.png)
-
-At this point, you are connected to your EC2 instance. You can now run your application using `docker`.
-
 ## Push your Docker image to ECR.
 
 Before being able to run your application Docker image on your EC2 instance, you need to build it and
@@ -79,6 +62,23 @@ aws s3 cp ./models s3://<your-S3-bucket-name>//models --recursive
 The command above will copy the `models` folder to the `models` folder in your S3 bucket. Thanks to 
 the `--recursive` flag, all the files contained in the `models` folder will be copied to your S3 bucket.
 Make sure you read the documentation and tailor your command to your needs.
+
+## Connect to your EC2 instance.
+
+To connect to your EC2 instance, you can use either the `ec2_instance_public_dns` or the `ec2_instance_public_ip`
+outputs of your Terraform deployment. In this example, we will use the `ec2_instance_public_dns` output.
+You can connect using the `ssh` command:
+
+```
+ssh ec2-user@ec2-15-188-119-232.eu-west-3.compute.amazonaws.com
+```
+
+You may be asked to confirm the authenticity of the host at first connection. Just type `yes` and 
+press <kbd>ENTER</kbd>. Once connected, you should see something like this:
+
+![ssh_connection](./img/ssh_connection.png)
+
+At this point, you are connected to your EC2 instance. You can now run your application using `docker`.
 
 ## Run your Docker image on your EC2 instance.
 
