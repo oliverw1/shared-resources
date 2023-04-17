@@ -5,5 +5,5 @@ data "aws_arn" "iam_user_arn" {
 }
 
 locals {
-  deployer_name = replace(trimprefix(data.aws_arn.iam_user_arn.resource, "user/"), "_", "-")
+  deployer_name = replace(trimprefix(data.aws_arn.iam_user_arn.resource, "user/"), "_", "")
 }
