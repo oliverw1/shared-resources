@@ -96,7 +96,7 @@ docker pull 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest
 # Pull your dependencies from S3
 aws s3 cp s3://<your-S3-bucket-name>/models ./models --recursive
 
-# Run the API (and mount the models folder as a volume in the /data/models folder of the image)
+# Run the API (and mount the models folder as a volume in the /app/data/models folder of the image)
 docker run \
 -d \
 --rm \
