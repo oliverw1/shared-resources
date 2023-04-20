@@ -96,11 +96,15 @@ docker pull 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest
 # Pull your dependencies from S3
 aws s3 cp s3://<your-S3-bucket-name>/models ./models --recursive
 
+# Create a Docker network for your containers to be able to communicate
+docker network create kulroai-net
+
 # Run the API (and mount the models folder as a volume in the /app/data/models folder of the image)
 docker run \
 -d \
 --rm \
---network host \
+--network kulroai-net \
+--name api \
 -v $(pwd)/models:/app/data/models \
 -p 8000:8000 \
 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest \
@@ -110,7 +114,8 @@ api
 docker run \
 -d \
 --rm \
---network host \
+--network kulroai-net \
+--name app \
 -p 80:8500 \
 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest \
 app
