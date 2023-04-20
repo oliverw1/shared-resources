@@ -56,7 +56,7 @@ the following command:
 
 ```bash
 # From the root of your repository:
-aws s3 cp ./models s3://<your-S3-bucket-name>//models --recursive
+aws s3 cp ./models s3://<your-S3-bucket-name>/models --recursive
 ```
 
 The command above will copy the `models` folder to the `models` folder in your S3 bucket. Thanks to 
@@ -100,7 +100,8 @@ aws s3 cp s3://<your-S3-bucket-name>/models ./models --recursive
 docker run \
 -d \
 --rm \
--v $(pwd)/models:/data/models \
+--network host \
+-v $(pwd)/models:/app/data/models \
 -p 8000:8000 \
 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest \
 api
@@ -109,6 +110,7 @@ api
 docker run \
 -d \
 --rm \
+--network host \
 -p 80:8500 \
 516454187396.dkr.ecr.eu-west-3.amazonaws.com/testuser:latest \
 app
