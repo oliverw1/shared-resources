@@ -121,11 +121,18 @@ docker run \
 app
 ```
 
-Note that the security group associated to your EC2 instance is configured to allow only SSH, HTTP, 
-and HTTPS connections. It means that out of the port 22 dedicated to SSH, you can run your Streamlit 
-application on port 80 (HTTP) and port 443 (HTTPS) only. Your Docker port mapping should be adapted
-as in the example above (mapping from `8500` inside the container to `80` outside the container, which 
-is the hosting EC2 machine one).
+A few notes about the commands above and the EC2 environment:
+
+* the security group associated to your EC2 instance is configured to allow only SSH, HTTP, 
+  and HTTPS connections. It means that out of the port 22 dedicated to SSH, you can run your Streamlit 
+  application on port 80 (HTTP) and port 443 (HTTPS) only. Your Docker port mapping should be adapted
+  as in the example above (mapping from `8500` inside the container to `80` outside the container, which 
+  is the hosting EC2 machine one).
+
+* The usage of the Docker network `kulroai-net` allows your containers to communicate with each other. This way,
+  knowing that your API container is named `api` and exposed on port `8000`, you can reach it from your Streamlit
+  container named `app` under the URL `http://api:8080`. The same applies from `api` to `app` and any other container
+  that would be running in the Docker network.
 
 Once done, you can head to your domain name (here `testuser.realization-of-ai.com`) and you should see
 your application running live! Congratulations, you just deployed your application in the Cloud! 🎉
