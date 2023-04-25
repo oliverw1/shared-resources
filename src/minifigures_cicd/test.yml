@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+
+    name: Python ${{ matrix.python-version }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install @devcontainers/cli
+        run: npm install --location=global @devcontainers/cli@0.26.1
+
+      - name: Start Dev Container
+        env:
+          DOCKER_BUILDKIT: 1
+        run: |
+          git config --global init.defaultBranch main
+          PYTHON_VERSION=${{ matrix.python-version }} devcontainer up --workspace-folder .
+
+      < Write below two steps that will run linting and testing of your package. >
+      < You will need to use `devcontainer exec --workspace-folder . `poe command to run` >

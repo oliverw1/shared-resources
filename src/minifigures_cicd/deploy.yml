@@ -1,0 +1,65 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+jobs:
+
+  run-tests:
+    uses: ./.github/workflows/test.yml
+
+  provision-infra-build-deploy:
+    needs: [run-tests]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+      EC2_USERNAME: ec2-user
+      ECR_ACCOUNT_URL: 516454187396.dkr.ecr.eu-west-3.amazonaws.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install aws CLI v2
+        uses: unfor19/install-aws-cli-action@v1
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.7
+          terraform_wrapper: false
+
+      - name: Apply Terraform configuration
+        shell: bash
+        run: |
+          < Write here the commands to apply your Terraform config. >
+
+          ecr_repository_url=$(terraform output -raw ecr_repository_url)
+          ec2_public_dns=$(terraform output -raw ec2_instance_public_dns)
+          echo "ECR_REPO_URL=$ecr_repository_url" >> $GITHUB_ENV
+          echo "EC2_PUBLIC_DNS=$ec2_public_dns" >> $GITHUB_ENV
+
+      - name: Build and push the application Docker image
+        env:
+          DOCKER_BUILDKIT: 1
+        run: |
+          < Write here the commands to login to ECR, build and push your Docker command. >
+
+      - name: Deploy with ssh
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          username: ${{ env.EC2_USERNAME }}
+          host: ${{ env.EC2_PUBLIC_DNS }}
+          key: ${{ env.AWS_SSH_KEY }}
+          envs: ECR_REPO_URL,ECR_ACCOUNT_URL
+          script: |
+            #!/usr/bin/env bash
+            set -e
+
+            < Write below the commands to run in your EC2 instance to run your application. >
+            < Think also about what to do with the already running containers. >
