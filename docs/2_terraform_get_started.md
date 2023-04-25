@@ -61,6 +61,7 @@ module. To do so:
   module "student_stack" {
     source            = "git::https://github.com/kuleuven-realization-of-ai/shared-resources.git//terraform/modules/student-stack?ref=main"
     ec2_key_pair_name = <INSERT HERE YOUR SSH KEYPAIR NAME>
+    ec2_instance_type = "t3.small"
   }
 
   output "ecr_repository_url" {
