@@ -63,3 +63,4 @@ jobs:
 
             < Write below the commands to run in your EC2 instance to run your application. >
             < Think also about what to do with the already running containers. >
+            < You can make sure you free up space in the EC2 instance by running `docker system prune --all -f` at the end of the script >
