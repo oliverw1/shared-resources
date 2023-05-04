@@ -17,7 +17,8 @@ password (8 characters, 1 number, 1 special character). If not, we will have to 
 
 ![first_connection](img/first_connection.png)
 
-Once done, you will access the AWS console web UI.You're ready to start your Cloud journey 🚀! Make sure your region in the upper right corner is set to `Paris (eu-west-3)`.
+Once done, you will access the AWS console web UI.You're ready to start your Cloud journey 🚀!
+Make sure your region in the upper right corner is set to `Paris (eu-west-3)`.
 
 ![console](img/aws_console.png)
 
