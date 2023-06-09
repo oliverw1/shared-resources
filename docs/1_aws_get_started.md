@@ -22,7 +22,7 @@ Make sure your region in the upper right corner is set to `Paris (eu-west-3)`.
 
 ![console](img/aws_console.png)
 
-## Configure your `aws` CLI. with credentials. 
+## Configure your `aws` CLI with credentials. 
 
 Accessing AWS resources solely via the web UI is not always very convenient. There are moments (to not 
 say ~~always~~ often 😬) where you will prefer to use your terminal to access your AWS resources. To do
