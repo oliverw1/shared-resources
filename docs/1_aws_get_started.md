@@ -22,33 +22,14 @@ Make sure your region in the upper right corner is set to `Paris (eu-west-3)`.
 
 ![console](img/aws_console.png)
 
-## Install the `aws` CLI.
+## Configure your `aws` CLI. with credentials. 
 
 Accessing AWS resources solely via the web UI is not always very convenient. There are moments (to not 
 say ~~always~~ often 😬) where you will prefer to use your terminal to access your AWS resources. To do
-so, we will use the `aws` CLI.
+so, we will use the `aws` CLI. The `aws` CLI should be preinstalled by default in your CodeSpace environment.
 
-To install the CLI in your machine, [you can refer to these instructions](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). 
-We can summarize them simply by running the following commands:
-```
-sudo apt-get update && sudo apt-get install unzip -y
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
-
-Once done, you should be able to access the `aws` CLI in your terminal by running:
-```
-aws
-```
-
-![aws_cli](./img/aws_cli.png)
-
-## Configure your `aws` CLI. with credentials. 
-
-Now you have installed the `aws` CLI, it's time for using it! Before being able to effectively use it,
-you will need to configure your CLI with your AWS account credentials. To do so, you will need to create
-a CLI access key in the AWS Console.
+It's time for using it! Before being able to effectively use it, you will need to configure your CLI with 
+your AWS account credentials. To do so, you will need to create a CLI access key in the AWS Console.
 
 * Go to the `Security Credentials` section of your AWS console:
 
