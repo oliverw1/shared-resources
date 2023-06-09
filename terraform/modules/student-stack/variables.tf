@@ -12,7 +12,7 @@ variable "ec2_ami_id" {
 variable "ec2_instance_type" {
   type        = string
   description = "The instance type of the EC2 instance."
-  default     = "t3.nano"
+  default     = "t3.small"
   validation {
     condition     = contains(["t3.nano", "t3.micro", "t3.small"], var.ec2_instance_type)
     error_message = "Allowed values for input_parameter are \"t3.nano\", \"t3.micro\", or \"t3.small\"."
